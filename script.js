@@ -41,3 +41,70 @@ document.querySelectorAll('.product-carousel').forEach(carousel => {
         gridWrapper.scrollLeft -= scrollAmount;
     });
 });
+
+/*
+  Funcionalidad:
+  - Al hacer clic en cualquier imagen dentro de .product-card se abre un modal
+    que muestra el contenido de esa tarjeta (imagen, títulos, precio y botón).
+  - Se puede cerrar con el botón de cerrar o clic fuera del modal-content o Esc.
+*/
+
+document.addEventListener('click', function (e) {
+    // detectar clic en imagen dentro de .product-card
+    const img = e.target.closest('.product-card img');
+    if (!img) return;
+
+    const card = img.closest('.product-card');
+    if (!card) return;
+
+    openModalWithCard(card);
+});
+
+function openModalWithCard(card) {
+    const modal = document.getElementById('product-modal');
+    const body = modal.querySelector('.modal-body');
+
+    // clonar contenido de la card para no moverla del DOM original
+    body.innerHTML = ''; // limpiar
+    const clone = card.cloneNode(true);
+
+    // opcional: si quieres que el botón de comprar abra en nueva pestaña, mantener comportamiento
+    const buyBtn = clone.querySelector('.add-to-cart-btn');
+    if (buyBtn) {
+        buyBtn.style.marginTop = '0.6rem';
+    }
+
+    body.appendChild(clone);
+
+    modal.classList.remove('hidden');
+    modal.setAttribute('aria-hidden', 'false');
+
+    // foco en botón cerrar para accesibilidad
+    const closeBtn = modal.querySelector('.modal-close');
+    closeBtn?.focus();
+}
+
+// cerrar modal con clic en cerrar, clic en fondo o tecla Esc
+(function setupModalCloseHandlers() {
+    const modal = document.getElementById('product-modal');
+    if (!modal) return;
+
+    const closeBtn = modal.querySelector('.modal-close');
+    closeBtn?.addEventListener('click', closeModal);
+
+    modal.addEventListener('click', function (e) {
+        if (e.target === modal) closeModal(); // clic en backdrop
+    });
+
+    document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape' && modal && !modal.classList.contains('hidden')) {
+            closeModal();
+        }
+    });
+
+    function closeModal() {
+        modal.classList.add('hidden');
+        modal.setAttribute('aria-hidden', 'true');
+        modal.querySelector('.modal-body').innerHTML = '';
+    }
+})();
