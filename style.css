@@ -19,7 +19,7 @@ html {
 }
 
 body {
-    font-family: var(--font-body);
+    font-family: 'Roboto', system-ui, -apple-system, "Segoe UI", Arial, sans-serif;
     color: var(--text-color);
     background-color: #fff;
 }
@@ -39,16 +39,22 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 1rem 5%;
+    padding: 0px 5%;
     max-width: 1200px;
     margin: 0 auto;
 }
 
 .nav-logo {
-    font-family: var(--font-headings);
-    font-size: 1.8rem;
-    color: var(--primary-color);
-    text-decoration: none;
+    display:inline-block;
+    line-height:0;
+}
+
+.nav-logo .logo-img{
+    width:48px;
+    height:48px;
+    object-fit:contain;
+    display:block;
+    border-radius:8px; /* opcional */
 }
 
 .nav-menu {
@@ -138,9 +144,8 @@ body {
 }
 
 .hero-content p {
-    font-size: 1.5rem;
+    font-size: 2rem;
     margin-bottom: 2rem;
-    font-weight: 300;
 }
 
 .cta-button {
@@ -223,11 +228,12 @@ body {
 .product-card img {
     width: 100%;
     height: 300px;
-    object-fit: cover;
+    object-fit: contain;
+    cursor: pointer;
 }
 
 .product-card h3 {
-    font-family: var(--font-headings);
+    
     font-size: 1.5rem;
     margin: 1rem 0 0.5rem;
 }
@@ -332,7 +338,7 @@ body {
 }
 
 .footer h3 {
-    font-family: var(--font-headings);
+    
     font-size: 1.5rem;
     margin-bottom: 1rem;
     color: var(--accent-color);
@@ -375,6 +381,99 @@ body {
     border-top: 1px solid #333;
 }
 
+/* --- Anuncio Coming Soon --- */
+.announcement.coming-soon{
+    display:inline-flex;
+    align-items:center;
+    gap:0.6rem;
+    padding:0.55rem 1.1rem;
+    background: linear-gradient(135deg,#6a11cb 0%, #2575fc 100%);
+    color:#ffffff;
+    font-weight:700;
+    text-transform:uppercase;
+    letter-spacing:1px;
+    border-radius:999px;
+    box-shadow: 0 10px 30px rgba(37,117,252,0.18), 0 2px 6px rgba(0,0,0,0.12);
+    border: 1px solid rgba(255,255,255,0.12);
+    font-family: 'Playfair Display', 'Roboto', sans-serif;
+    transform-origin: center;
+    animation: subtlePulse 6s ease-in-out infinite;
+}
+
+/* icono tipo logo (emoji) */
+.announcement.coming-soon::before{
+    content: "✨";
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    width:36px;
+    height:36px;
+    border-radius:50%;
+    background: linear-gradient(135deg, rgba(255,255,255,0.12), rgba(255,255,255,0.04));
+    color:#fff;
+    font-size:18px;
+    box-shadow: 0 6px 16px rgba(0,0,0,0.18), inset 0 1px 0 rgba(255,255,255,0.06);
+}
+
+/* variante más discreta si lo colocas en bloque */
+.announcement.coming-soon.fullwidth{
+    display:flex;
+    justify-content:center;
+    width:100%;
+    margin:0.6rem 0 1rem 0;
+}
+
+/* animación sutil */
+@keyframes subtlePulse{
+    0%{ transform: scale(1); }
+    50%{ transform: scale(1.02); }
+    100%{ transform: scale(1); }
+}
+
+/* --- Tipografías --- */
+/* H1 (hero) — más elegante y llamativo */
+h1 {
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    font-size: 3.2rem;
+    line-height: 1.02;
+    margin: 0 0 0.6rem 0;
+    letter-spacing: 0.6px;
+    /* Texto en degradado */
+    background: linear-gradient(90deg, #d86bbf 0%, #6a11cb 50%, #2575fc 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    text-shadow: 0 8px 26px rgba(37,117,252,0.08);
+}
+
+/* H2 / títulos de sección */
+.section-title, h2 {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 700;
+    font-size: 1.6rem;
+    margin: 0 0 1rem 0;
+    color: #2b2b2b;
+    letter-spacing: 0.8px;
+    padding: 0.35rem 0.8rem;
+    border-radius: 12px;
+    background: linear-gradient(135deg, rgba(106,17,203,0.04), rgba(37,117,252,0.03));
+    border: 1px solid rgba(106,17,203,0.06);
+    box-shadow: 0 6px 18px rgba(37,117,252,0.04);
+    display: inline-block;
+}
+
+/* Ajustes responsivos */
+@media (max-width: 900px) {
+    h1 { font-size: 2.4rem; }
+    .section-title, h2 { font-size: 1.35rem; padding: 0.3rem 0.6rem; }
+}
+
+@media (max-width: 480px) {
+    h1 { font-size: 1.8rem; }
+    .section-title, h2 { font-size: 1.1rem; padding: 0.25rem 0.5rem; letter-spacing: 0.4px; }
+}
+
 /* --- Responsividad --- */
 @media (max-width: 768px) {
     .nav-menu {
@@ -387,6 +486,7 @@ body {
         text-align: center;
         transition: 0.3s;
         box-shadow: 0 10px 27px rgba(0, 0, 0, 0.05);
+        
     }
 
     .nav-menu.active {
@@ -418,7 +518,7 @@ body {
     }
 
     .hero-content p {
-        font-size: 1.2rem;
+        font-size: 1.6rem;
     }
 
     .floating-socials {
@@ -457,4 +557,86 @@ body {
         padding-left: 5%;
         padding-right: 5%;
     }
+}
+
+@media (max-width:600px){
+    .announcement.coming-soon{
+        padding:0.45rem 0.9rem;
+        font-size:0.95rem;
+    }
+    .announcement.coming-soon::before{
+        width:30px;
+        height:30px;
+        font-size:16px;
+    }
+}
+
+/* Estilo para el logo en la navegación */
+.nav-logo { display:inline-block; line-height:0; }
+.nav-logo .logo-img{
+    width:auto;
+    height:4rem;
+    object-fit:contain;
+    display:block;
+    border-radius:8px; /* opcional */
+}
+/* Ajustes responsivos */
+@media (max-width:600px){
+    .nav-logo .logo-img{ 
+        width:auto; 
+        height:5rem ; }
+}
+
+/* Modal producto */
+.modal{
+    position:fixed;
+    inset:0;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background: rgba(0,0,0,0.6);
+    z-index:9999;
+    padding:1.25rem;
+}
+.modal.hidden{ display:none; }
+.modal-content{
+    background:#fff;
+    max-width:720px;
+    width:auto;
+    border-radius:12px;
+    box-shadow:0 20px 50px rgba(0,0,0,0.35);
+    overflow:auto;
+    position:relative;
+    padding:1.25rem;
+}
+.modal-close{
+    position:absolute;
+    top:10px;
+    right:12px;
+    background:transparent;
+    border:none;
+    font-size:1rem;
+    cursor:pointer;
+    color:#333;
+}
+.modal-body .product-card{
+    display:inline-block;
+    gap:1rem;
+    align-items:flex-start;
+}
+.modal-body .product-card img{
+    max-width:180px;
+    width:100%;
+    height:auto;
+    border-radius:8px;
+    object-fit:cover;
+    box-shadow:0 8px 30px rgba(0,0,0,0.12);
+}
+.modal-body h3, .modal-body h4, .modal-body p.price{
+    margin:0.25rem 0;
+}
+@media (max-width:600px){
+    .modal-content{ padding:0.9rem; }
+    .modal-body .product-card{ flex-direction:column; align-items:center; text-align:center; }
+    .modal-body .product-card img{ max-width:240px; }
 }
